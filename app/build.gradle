@@ -12,7 +12,7 @@ android {
 
     versionCode 1
     versionName "1.0"
-    
+
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
   }
 
@@ -28,7 +28,11 @@ dependencies {
   def appDependencies = rootProject.ext.appDependencies
   def testDependencies = rootProject.ext.testDependencies
 
+  annotationProcessor appDependencies.daggerCompiler
+
   compile appDependencies.supportAppCompatV7
+
+  compile appDependencies.dagger
 
   androidTestCompile(testDependencies.espresso, {
     exclude group: 'com.android.support', module: 'support-annotations'

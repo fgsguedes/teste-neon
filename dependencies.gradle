@@ -6,16 +6,21 @@ ext {
   // Support library
   supportLibraryVersion = "25.1.0"
 
+  // Google
+  daggerVersion = "2.8"
+
   // Testing
   junitVersion = "4.12"
   espressoVersion = "2.2.2"
 
   appDependencies = [
-      "supportAppCompatV7": "com.android.support:appcompat-v7:$supportLibraryVersion"
+      supportAppCompatV7: "com.android.support:appcompat-v7:$supportLibraryVersion",
+      dagger            : "com.google.dagger:dagger:$daggerVersion",
+      daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion"
   ]
 
   testDependencies = [
-      "junit"   : "junit:junit:$junitVersion",
-      "espresso": "com.android.support.test.espresso:espresso-core:$espressoVersion"
+      junit   : "junit:junit:$junitVersion",
+      espresso: "com.android.support.test.espresso:espresso-core:$espressoVersion"
   ]
 }
