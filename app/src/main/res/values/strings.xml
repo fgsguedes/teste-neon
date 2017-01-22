@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">Teste Neon</string>
+  <string name="send_money">Enviar dinheiro</string>
+  <string name="transaction_history">Histórico de envios</string>
+  <string name="developer_name">Filipe Guedes</string>
+  <string name="developer_email">fgs.guedes@gmail.com</string>
 </resources>
