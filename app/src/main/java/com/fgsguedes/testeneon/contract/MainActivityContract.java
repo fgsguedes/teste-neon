@@ -2,7 +2,7 @@ package com.fgsguedes.testeneon.contract;
 
 import com.fgsguedes.testeneon.base.BasePresenter;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public interface MainActivityContract {
 
@@ -18,6 +18,6 @@ public interface MainActivityContract {
   }
 
   interface Repository {
-    Observable<String> generateToken();
+    Single<String> generateToken();
   }
 }

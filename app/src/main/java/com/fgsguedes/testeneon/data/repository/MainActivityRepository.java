@@ -3,7 +3,7 @@ package com.fgsguedes.testeneon.data.repository;
 import com.fgsguedes.testeneon.contract.MainActivityContract;
 import com.fgsguedes.testeneon.data.api.NeonApi;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 
 public class MainActivityRepository implements MainActivityContract.Repository {
 
@@ -14,7 +14,7 @@ public class MainActivityRepository implements MainActivityContract.Repository {
   }
 
   @Override
-  public Observable<String> generateToken() {
+  public Single<String> generateToken() {
     return neonApi.generateToken("Filipe Guedes", "fgs.guedes@gmail.com");
   }
 }
