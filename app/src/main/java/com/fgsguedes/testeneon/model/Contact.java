@@ -1,6 +1,9 @@
 package com.fgsguedes.testeneon.model;
 
-public final class Contact {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public final class Contact implements Parcelable {
 
   public final long id;
   public final String name;
@@ -13,4 +16,39 @@ public final class Contact {
     this.phoneNumber = phoneNumber;
     this.photoPath = photoPath;
   }
+
+  private Contact(Parcel parcel) {
+    this(
+        parcel.readLong(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    );
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel dest, int flags) {
+    dest.writeLong(id);
+    dest.writeString(name);
+    dest.writeString(phoneNumber);
+    dest.writeString(photoPath);
+  }
+
+  private static Creator CREATOR = new Creator() {
+
+    @Override
+    public Contact createFromParcel(Parcel source) {
+      return new Contact(source);
+    }
+
+    @Override
+    public Contact[] newArray(int size) {
+      return new Contact[size];
+    }
+  };
 }
