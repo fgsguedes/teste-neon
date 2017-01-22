@@ -2,6 +2,7 @@ ext {
 
   // Gradle
   gradleBuildToolsVersion = "2.2.3"
+  retrolambdaVersion = "3.4.0"
 
   // Support library
   supportLibraryVersion = "25.1.0"
