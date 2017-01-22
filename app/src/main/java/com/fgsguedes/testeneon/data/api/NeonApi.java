@@ -15,20 +15,20 @@ import retrofit2.http.Query;
 
 public interface NeonApi {
 
-  @GET
+  @GET("GenerateToken")
   Single<String> generateToken(
       @Query("nome") @NonNull String name,
       @Query("email") @NonNull String email
   );
 
-  @POST
+  @POST("SendMoney")
   Completable sendMoney(
       @Field("token") @NonNull String token,
       @Field("ClienteId") @NonNull String contactId,
       @Field("valor") double value
   );
 
-  @GET
+  @GET("GetTransfers")
   Single<List<Transfer>> getTransfers(
       @Query("token") @NonNull String token
   );
