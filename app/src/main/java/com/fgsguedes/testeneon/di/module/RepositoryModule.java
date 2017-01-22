@@ -1,7 +1,8 @@
 package com.fgsguedes.testeneon.di.module;
 
 import com.fgsguedes.testeneon.contract.MainActivityContract;
-import com.fgsguedes.testeneon.repository.MainActivityRepository;
+import com.fgsguedes.testeneon.data.api.NeonApi;
+import com.fgsguedes.testeneon.data.repository.MainActivityRepository;
 
 import javax.inject.Singleton;
 
@@ -13,8 +14,10 @@ public class RepositoryModule {
 
   @Provides
   @Singleton
-  public MainActivityContract.Repository providesMainActivityRepository() {
-    return new MainActivityRepository();
+  public MainActivityContract.Repository providesMainActivityRepository(
+      NeonApi neonApi
+  ) {
+    return new MainActivityRepository(neonApi);
   }
 
 }

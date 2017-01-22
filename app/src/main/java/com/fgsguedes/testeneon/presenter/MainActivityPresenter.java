@@ -23,7 +23,7 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
-    repository.getToken();
+    repository.generateToken();
   }
 
   @Override
