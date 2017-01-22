@@ -4,6 +4,8 @@ import android.content.SharedPreferences;
 
 import com.fgsguedes.testeneon.data.api.NeonApi;
 import com.fgsguedes.testeneon.data.api.SchedulerComposer;
+import com.fgsguedes.testeneon.data.repository.ContactsRepository;
+import com.fgsguedes.testeneon.data.repository.ContactsRepositoryImpl;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.data.repository.TokenRepositoryImpl;
 
@@ -23,5 +25,11 @@ public class RepositoryModule {
       SharedPreferences preferences
   ) {
     return new TokenRepositoryImpl(neonApi, composer, preferences);
+  }
+
+  @Provides
+  @Singleton
+  public ContactsRepository providesContactRepository() {
+    return new ContactsRepositoryImpl();
   }
 }

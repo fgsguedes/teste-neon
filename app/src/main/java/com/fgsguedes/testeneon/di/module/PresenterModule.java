@@ -2,6 +2,7 @@ package com.fgsguedes.testeneon.di.module;
 
 import com.fgsguedes.testeneon.contract.MainActivityContract;
 import com.fgsguedes.testeneon.contract.SendMoneyContract;
+import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.presenter.MainActivityPresenter;
 import com.fgsguedes.testeneon.presenter.SendMoneyPresenter;
@@ -25,8 +26,9 @@ public class PresenterModule {
   @Provides
   @Singleton
   public SendMoneyContract.Presenter provideSendMoneyPresenter(
-      TokenRepository repository
+      TokenRepository tokenRepository,
+      ContactsRepository contactsRepository
   ) {
-    return new SendMoneyPresenter(repository);
+    return new SendMoneyPresenter(tokenRepository, contactsRepository);
   }
 }
