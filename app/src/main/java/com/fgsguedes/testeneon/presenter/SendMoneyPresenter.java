@@ -9,6 +9,9 @@ import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
+import com.fgsguedes.testeneon.model.Contact;
+
+import java.util.ArrayList;
 
 public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
@@ -19,6 +22,8 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   private final TransactionsRepository transactionsRepository;
 
   private SendMoneyContract.View view;
+
+  private final ArrayList<Contact> contacts = new ArrayList<>();
 
   public SendMoneyPresenter(
       TokenRepository tokenRepository,
@@ -39,12 +44,17 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     contactsRepository.list()
         .subscribe(
-            view::showContact,
+            this::onReceivedContact,
             this::onListContactError
         );
   }
 
-  private void onListContactError(Throwable error) {
+  private void onReceivedContact(@NonNull Contact contact) {
+    contacts.add(contact);
+    view.showContact(contact);
+  }
+
+  private void onListContactError(@NonNull Throwable error) {
     Log.e(TAG, "List contacts error", error);
   }
 
@@ -55,6 +65,18 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
   @Override
   public void contactClicked(long contactId) {
+    Contact contact = find(contactId);
+    view.showAmountPrompt(contact);
+  }
 
+  @NonNull
+  private Contact find(long contactId) {
+    for (Contact c : contacts) {
+      if (c.id == contactId) {
+        return c;
+      }
+    }
+
+    throw new IllegalArgumentException("Invalid contactId");
   }
 }

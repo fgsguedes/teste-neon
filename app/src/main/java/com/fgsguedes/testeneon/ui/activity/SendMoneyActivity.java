@@ -57,6 +57,11 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
     contactsAdapter.addItem(contact);
   }
 
+  @Override
+  public void showAmountPrompt(@NonNull Contact contact) {
+
+  }
+
   private void setUpUi() {
     linearLayoutManager = new LinearLayoutManager(this);
     contactsAdapter = new ContactsAdapter(this);
