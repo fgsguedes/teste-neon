@@ -9,6 +9,13 @@ ext {
   // Google
   daggerVersion = "2.8"
 
+  // Rx
+  rxJavaVersion = "2.0.4"
+  rxAndroidVersion = "2.0.1"
+
+  // Square
+  retrofitVersion = "2.1.0"
+
   // Testing
   junitVersion = "4.12"
   espressoVersion = "2.2.2"
@@ -16,7 +23,10 @@ ext {
   appDependencies = [
       supportAppCompatV7: "com.android.support:appcompat-v7:$supportLibraryVersion",
       dagger            : "com.google.dagger:dagger:$daggerVersion",
-      daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion"
+      daggerCompiler    : "com.google.dagger:dagger-compiler:$daggerVersion",
+      rxJava            : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",
+      rxAndroid         : "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion",
+      retrofit          : "com.squareup.retrofit2:retrofit:$retrofitVersion"
   ]
 
   testDependencies = [
