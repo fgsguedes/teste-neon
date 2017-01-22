@@ -13,6 +13,7 @@ import com.fgsguedes.testeneon.R;
 import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.model.Contact;
 import com.fgsguedes.testeneon.ui.adapter.ContactsAdapter;
+import com.fgsguedes.testeneon.ui.dialog.SendMoneyDialog;
 
 import javax.inject.Inject;
 
@@ -59,7 +60,7 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
 
   @Override
   public void showAmountPrompt(@NonNull Contact contact) {
-
+    SendMoneyDialog.show(getSupportFragmentManager(), contact);
   }
 
   private void setUpUi() {
