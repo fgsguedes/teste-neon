@@ -37,7 +37,12 @@ dependencies {
   compile appDependencies.rxJava
   compile appDependencies.rxAndroid
 
+  compile appDependencies.okHttp
+  compile appDependencies.okHttpLoggingInterceptor
+
   compile appDependencies.retrofit
+  compile appDependencies.retrofitRxAdapter
+  compile appDependencies.retrofitGsonConverter
 
   androidTestCompile(testDependencies.espresso, {
     exclude group: 'com.android.support', module: 'support-annotations'
