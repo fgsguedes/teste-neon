@@ -26,19 +26,19 @@
       android:text="@string/developer_email"/>
 
   <Button
-      android:id="@+id/button_send_money"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_above="@id/button_transaction_history"
-      android:layout_centerHorizontal="true"
-      android:text="@string/send_money"/>
-
-  <Button
       android:id="@+id/button_transaction_history"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_alignParentBottom="true"
       android:layout_centerHorizontal="true"
       android:text="@string/transaction_history"/>
+
+  <Button
+      android:id="@+id/button_send_money"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_above="@id/button_transaction_history"
+      android:layout_centerHorizontal="true"
+      android:text="@string/send_money"/>
 
 </RelativeLayout>
