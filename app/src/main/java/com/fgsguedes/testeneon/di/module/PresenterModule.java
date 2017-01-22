@@ -1,6 +1,7 @@
 package com.fgsguedes.testeneon.di.module;
 
 import com.fgsguedes.testeneon.contract.MainActivityContract;
+import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.presenter.MainActivityPresenter;
 
 import javax.inject.Singleton;
@@ -14,7 +15,7 @@ public class PresenterModule {
   @Provides
   @Singleton
   public MainActivityContract.Presenter providesMainActivityPresenter(
-      MainActivityContract.Repository repository
+      TokenRepository repository
   ) {
     return new MainActivityPresenter(repository);
   }

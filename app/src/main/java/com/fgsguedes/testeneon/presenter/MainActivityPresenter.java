@@ -6,16 +6,17 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.fgsguedes.testeneon.contract.MainActivityContract;
+import com.fgsguedes.testeneon.data.repository.TokenRepository;
 
 public class MainActivityPresenter implements MainActivityContract.Presenter {
 
   private final String TAG = getClass().getSimpleName();
 
-  private final MainActivityContract.Repository repository;
+  private final TokenRepository repository;
 
   private MainActivityContract.View view;
 
-  public MainActivityPresenter(MainActivityContract.Repository repository) {
+  public MainActivityPresenter(TokenRepository repository) {
     this.repository = repository;
   }
 
