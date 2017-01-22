@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.fgsguedes.testeneon.App;
 import com.fgsguedes.testeneon.R;
@@ -63,5 +64,12 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
     contactsRecycler = ((RecyclerView) findViewById(R.id.recycler_view_contacts));
     contactsRecycler.setLayoutManager(linearLayoutManager);
     contactsRecycler.setAdapter(contactsAdapter);
+
+    contactsAdapter.setOnClickListener(this::listItemClicked);
+  }
+
+  private void listItemClicked(View view) {
+    long childItemId = contactsRecycler.getChildItemId(view);
+    presenter.contactClicked(childItemId);
   }
 }

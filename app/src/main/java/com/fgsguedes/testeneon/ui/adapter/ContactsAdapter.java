@@ -21,14 +21,18 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
   private final Context context;
   private final List<Contact> contacts = new ArrayList<>();
 
+  private View.OnClickListener clickListener;
+
   public ContactsAdapter(Context context) {
     this.context = context;
+    setHasStableIds(true);
   }
 
   @Override
   public ContactsViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    LayoutInflater inflater = LayoutInflater.from(context);
-    return new ContactsViewHolder(inflater.inflate(R.layout.adapter_row_contacts, parent, false));
+    View view = LayoutInflater.from(context).inflate(R.layout.adapter_row_contacts, parent, false);
+    view.setOnClickListener(clickListener);
+    return new ContactsViewHolder(view);
   }
 
   @Override
@@ -43,6 +47,15 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
   @Override
   public int getItemCount() {
     return contacts.size();
+  }
+
+  @Override
+  public long getItemId(int position) {
+    return contacts.get(position).id;
+  }
+
+  public void setOnClickListener(View.OnClickListener clickListener) {
+    this.clickListener = clickListener;
   }
 
   public void addItem(@NonNull Contact contact) {

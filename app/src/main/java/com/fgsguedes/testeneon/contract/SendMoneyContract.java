@@ -9,6 +9,7 @@ public interface SendMoneyContract {
 
   interface Presenter extends BasePresenter<View> {
 
+    void contactClicked(long contactId);
   }
 
   interface View {

@@ -8,6 +8,7 @@ import android.util.Log;
 import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
+import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 
 public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
@@ -15,11 +16,18 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
   private final TokenRepository tokenRepository;
   private final ContactsRepository contactsRepository;
+  private final TransactionsRepository transactionsRepository;
+
   private SendMoneyContract.View view;
 
-  public SendMoneyPresenter(TokenRepository tokenRepository, ContactsRepository contactsRepository) {
+  public SendMoneyPresenter(
+      TokenRepository tokenRepository,
+      ContactsRepository contactsRepository,
+      TransactionsRepository transactionsRepository
+  ) {
     this.tokenRepository = tokenRepository;
     this.contactsRepository = contactsRepository;
+    this.transactionsRepository = transactionsRepository;
   }
 
   @Override
@@ -42,6 +50,11 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
   @Override
   public void onSaveInstanceState(@NonNull Bundle outState) {
+
+  }
+
+  @Override
+  public void contactClicked(long contactId) {
 
   }
 }
