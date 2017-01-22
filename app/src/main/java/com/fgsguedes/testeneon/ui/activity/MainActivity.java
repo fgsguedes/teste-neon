@@ -2,7 +2,6 @@ package com.fgsguedes.testeneon.ui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 
 import com.fgsguedes.testeneon.App;
@@ -11,7 +10,7 @@ import com.fgsguedes.testeneon.contract.MainActivityContract;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainActivityContract.View {
+public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
 
   @Inject
   MainActivityContract.Presenter presenter;
@@ -24,12 +23,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    bindUiElements();
-    initInjector();
+    setUpInjector();
+    setUpUi();
     initPresenter(savedInstanceState);
   }
 
-  private void initInjector() {
+  private void setUpInjector() {
     ((App) getApplicationContext())
         .getApplicationComponent()
         .inject(this);
@@ -47,21 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   }
 
   @Override
-  public void onClick(View v) {
-
-    switch (v.getId()) {
-
-      case R.id.button_send_money:
-        presenter.sendMoneyClicked();
-        break;
-
-      case R.id.button_transaction_history:
-        presenter.transactionsClicked();
-        break;
-    }
-  }
-
-  @Override
   public void showButtons() {
 
   }
@@ -76,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
   }
 
-  private void bindUiElements() {
+  private void setUpUi() {
     sendMoneyButton = ((Button) findViewById(R.id.button_send_money));
-    transactionHistory = ((Button) findViewById(R.id.button_transaction_history));
+    sendMoneyButton.setOnClickListener((view) -> presenter.sendMoneyClicked());
 
-    sendMoneyButton.setOnClickListener(this);
-    transactionHistory.setOnClickListener(this);
+    transactionHistory = ((Button) findViewById(R.id.button_transaction_history));
+    transactionHistory.setOnClickListener((view) -> presenter.transactionsClicked());
   }
 }
