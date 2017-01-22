@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import com.fgsguedes.testeneon.contract.MainActivityContract;
 import com.fgsguedes.testeneon.data.api.NeonApi;
 import com.fgsguedes.testeneon.data.api.SchedulerComposer;
-import com.fgsguedes.testeneon.data.repository.MainActivityRepository;
+import com.fgsguedes.testeneon.data.repository.TokenRepository;
 
 import javax.inject.Singleton;
 
@@ -22,6 +22,6 @@ public class RepositoryModule {
       SchedulerComposer composer,
       SharedPreferences preferences
   ) {
-    return new MainActivityRepository(neonApi, composer, preferences);
+    return new TokenRepository(neonApi, composer, preferences);
   }
 }

@@ -10,7 +10,7 @@ import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 
 import io.reactivex.Single;
 
-public class MainActivityRepository implements MainActivityContract.Repository {
+public class TokenRepository implements MainActivityContract.Repository {
 
   private final String TAG = getClass().getSimpleName();
 
@@ -18,7 +18,7 @@ public class MainActivityRepository implements MainActivityContract.Repository {
   private final SchedulerComposer composer;
   private final SharedPreferences preferences;
 
-  public MainActivityRepository(NeonApi neonApi, SchedulerComposer composer, SharedPreferences preferences) {
+  public TokenRepository(NeonApi neonApi, SchedulerComposer composer, SharedPreferences preferences) {
     this.neonApi = neonApi;
     this.composer = composer;
     this.preferences = preferences;
