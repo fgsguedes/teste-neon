@@ -1,0 +1,21 @@
+ext {
+
+  // Gradle
+  gradleBuildToolsVersion = "2.2.3"
+
+  // Support library
+  supportLibraryVersion = "25.1.0"
+
+  // Testing
+  junitVersion = "4.12"
+  espressoVersion = "2.2.2"
+
+  appDependencies = [
+      "supportAppCompatV7": "com.android.support:appcompat-v7:$supportLibraryVersion"
+  ]
+
+  testDependencies = [
+      "junit"   : "junit:junit:$junitVersion",
+      "espresso": "com.android.support.test.espresso:espresso-core:$espressoVersion"
+  ]
+}
