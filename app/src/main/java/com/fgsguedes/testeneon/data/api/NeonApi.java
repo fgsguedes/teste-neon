@@ -24,7 +24,7 @@ public interface NeonApi {
   @POST("SendMoney")
   Completable sendMoney(
       @Field("token") @NonNull String token,
-      @Field("ClienteId") @NonNull String contactId,
+      @Field("ClienteId") @NonNull long contactId,
       @Field("valor") double value
   );
 
