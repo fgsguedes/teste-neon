@@ -38,6 +38,19 @@ public class MainActivityRepository implements MainActivityContract.Repository {
         .doOnSuccess(this::persistToken);
   }
 
+  @Override
+  public Single<String> getToken() {
+    return Single.create(emitter -> {
+      String token = preferences.getString("token", null);
+
+      if (token != null) {
+        emitter.onSuccess(token);
+      } else {
+        emitter.onError(new IllegalStateException("Token not generated"));
+      }
+    });
+  }
+
   private void persistToken(String token) {
     Log.e(TAG, "Caching -> " + token);
     preferences.edit()

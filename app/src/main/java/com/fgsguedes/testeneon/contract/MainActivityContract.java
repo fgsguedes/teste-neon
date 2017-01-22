@@ -19,5 +19,6 @@ public interface MainActivityContract {
 
   interface Repository {
     Single<String> generateToken();
+    Single<String> getToken();
   }
 }
