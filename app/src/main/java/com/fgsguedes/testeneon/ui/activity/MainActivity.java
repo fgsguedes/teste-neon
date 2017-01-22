@@ -1,16 +1,20 @@
 package com.fgsguedes.testeneon.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.fgsguedes.testeneon.App;
 import com.fgsguedes.testeneon.R;
 import com.fgsguedes.testeneon.contract.MainActivityContract;
 
+import javax.inject.Inject;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, MainActivityContract.View {
 
-  private MainActivityContract.Presenter presenter;
+  @Inject
+  MainActivityContract.Presenter presenter;
 
   private Button sendMoneyButton;
   private Button transactionHistory;
@@ -21,7 +25,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     setContentView(R.layout.activity_main);
 
     bindUiElements();
+    initInjector();
     initPresenter(savedInstanceState);
+  }
+
+  private void initInjector() {
+    ((App) getApplicationContext())
+        .getApplicationComponent()
+        .inject(this);
   }
 
   private void initPresenter(Bundle savedInstanceState) {
