@@ -1,6 +1,7 @@
 package com.fgsguedes.testeneon.di.module;
 
 import com.fgsguedes.testeneon.data.api.NeonApi;
+import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import javax.inject.Singleton;
@@ -36,5 +37,11 @@ public class NetworkingModule {
   @Singleton
   public NeonApi provideNeonApi(Retrofit retrofit) {
     return retrofit.create(NeonApi.class);
+  }
+
+  @Provides
+  @Singleton
+  public SchedulerComposer provideSchedulerComposer() {
+    return new SchedulerComposer();
   }
 }
