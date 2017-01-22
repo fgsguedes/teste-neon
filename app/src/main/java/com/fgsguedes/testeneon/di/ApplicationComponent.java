@@ -1,5 +1,6 @@
 package com.fgsguedes.testeneon.di;
 
+import com.fgsguedes.testeneon.di.module.AndroidModule;
 import com.fgsguedes.testeneon.di.module.NetworkingModule;
 import com.fgsguedes.testeneon.di.module.PresenterModule;
 import com.fgsguedes.testeneon.di.module.RepositoryModule;
@@ -12,6 +13,7 @@ import dagger.Component;
 @Singleton
 @Component(
     modules = {
+        AndroidModule.class,
         NetworkingModule.class,
         RepositoryModule.class,
         PresenterModule.class

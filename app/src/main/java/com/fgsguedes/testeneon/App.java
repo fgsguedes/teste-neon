@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.fgsguedes.testeneon.di.ApplicationComponent;
 import com.fgsguedes.testeneon.di.DaggerApplicationComponent;
+import com.fgsguedes.testeneon.di.module.AndroidModule;
 
 public class App extends Application {
 
@@ -12,7 +13,9 @@ public class App extends Application {
 
   public void onCreate() {
     super.onCreate();
-    applicationComponent = DaggerApplicationComponent.create();
+    applicationComponent = DaggerApplicationComponent.builder()
+        .androidModule(new AndroidModule(this))
+        .build();
   }
 
   @NonNull
