@@ -13,7 +13,6 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
   private final String TAG = getClass().getSimpleName();
 
   private final TokenRepository repository;
-
   private MainActivityContract.View view;
 
   public MainActivityPresenter(TokenRepository repository) {
@@ -50,7 +49,7 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
 
   @Override
   public void sendMoneyClicked() {
-    view.navigateToContacts();
+    view.navigateToSendMoney();
   }
 
   @Override

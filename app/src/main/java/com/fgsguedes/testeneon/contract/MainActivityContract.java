@@ -11,7 +11,7 @@ public interface MainActivityContract {
 
   interface View {
     void showButtons();
-    void navigateToContacts();
+    void navigateToSendMoney();
     void navigateToTransactions();
   }
 }

@@ -25,6 +25,7 @@ ext {
 
   appDependencies = [
       supportAppCompatV7      : "com.android.support:appcompat-v7:$supportLibraryVersion",
+      recyclerView            : "com.android.support:recyclerview-v7:$supportLibraryVersion",
       dagger                  : "com.google.dagger:dagger:$daggerVersion",
       daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",
       rxJava                  : "io.reactivex.rxjava2:rxjava:$rxJavaVersion",

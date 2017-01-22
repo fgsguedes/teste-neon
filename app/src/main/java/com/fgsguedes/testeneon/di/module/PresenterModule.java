@@ -1,8 +1,10 @@
 package com.fgsguedes.testeneon.di.module;
 
 import com.fgsguedes.testeneon.contract.MainActivityContract;
+import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.presenter.MainActivityPresenter;
+import com.fgsguedes.testeneon.presenter.SendMoneyPresenter;
 
 import javax.inject.Singleton;
 
@@ -18,5 +20,13 @@ public class PresenterModule {
       TokenRepository repository
   ) {
     return new MainActivityPresenter(repository);
+  }
+
+  @Provides
+  @Singleton
+  public SendMoneyContract.Presenter provideSendMoneyPresenter(
+      TokenRepository repository
+  ) {
+    return new SendMoneyPresenter(repository);
   }
 }

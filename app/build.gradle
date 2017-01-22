@@ -37,6 +37,7 @@ dependencies {
   annotationProcessor appDependencies.daggerCompiler
 
   compile appDependencies.supportAppCompatV7
+  compile appDependencies.recyclerView
 
   compile appDependencies.dagger
 

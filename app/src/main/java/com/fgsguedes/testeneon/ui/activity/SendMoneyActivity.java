@@ -1,30 +1,33 @@
 package com.fgsguedes.testeneon.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.fgsguedes.testeneon.App;
 import com.fgsguedes.testeneon.R;
-import com.fgsguedes.testeneon.contract.MainActivityContract;
+import com.fgsguedes.testeneon.contract.SendMoneyContract;
+import com.fgsguedes.testeneon.model.Contact;
+import com.fgsguedes.testeneon.ui.adapter.ContactsAdapter;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
+public class SendMoneyActivity extends AppCompatActivity implements SendMoneyContract.View {
 
   @Inject
-  MainActivityContract.Presenter presenter;
+  SendMoneyContract.Presenter presenter;
 
-  private Button sendMoneyButton;
-  private Button transactionHistory;
+  private RecyclerView contactsRecycler;
+  private LinearLayoutManager linearLayoutManager;
+  private ContactsAdapter contactsAdapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_send_money);
 
     setUpInjector();
     setUpUi();
@@ -49,26 +52,16 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
   }
 
   @Override
-  public void showButtons() {
-
-  }
-
-  @Override
-  public void navigateToSendMoney() {
-    Intent intent = new Intent(this, SendMoneyActivity.class);
-    startActivity(intent);
-  }
-
-  @Override
-  public void navigateToTransactions() {
-
+  public void showContact(@NonNull Contact contact) {
+    contactsAdapter.addItem(contact);
   }
 
   private void setUpUi() {
-    sendMoneyButton = ((Button) findViewById(R.id.button_send_money));
-    sendMoneyButton.setOnClickListener((view) -> presenter.sendMoneyClicked());
+    linearLayoutManager = new LinearLayoutManager(this);
+    contactsAdapter = new ContactsAdapter(this);
 
-    transactionHistory = ((Button) findViewById(R.id.button_transaction_history));
-    transactionHistory.setOnClickListener((view) -> presenter.transactionsClicked());
+    contactsRecycler = ((RecyclerView) findViewById(R.id.recycler_view_contacts));
+    contactsRecycler.setLayoutManager(linearLayoutManager);
+    contactsRecycler.setAdapter(contactsAdapter);
   }
 }

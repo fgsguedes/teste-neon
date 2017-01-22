@@ -5,6 +5,7 @@ import com.fgsguedes.testeneon.di.module.NetworkingModule;
 import com.fgsguedes.testeneon.di.module.PresenterModule;
 import com.fgsguedes.testeneon.di.module.RepositoryModule;
 import com.fgsguedes.testeneon.ui.activity.MainActivity;
+import com.fgsguedes.testeneon.ui.activity.SendMoneyActivity;
 
 import javax.inject.Singleton;
 
@@ -21,4 +22,5 @@ import dagger.Component;
 )
 public interface ApplicationComponent {
   void inject(MainActivity mainActivity);
+  void inject(SendMoneyActivity sendMoneyActivity);
 }
