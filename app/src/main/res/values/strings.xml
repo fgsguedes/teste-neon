@@ -4,4 +4,6 @@
   <string name="transaction_history">Histórico de envios</string>
   <string name="developer_name">Filipe Guedes</string>
   <string name="developer_email">fgs.guedes@gmail.com</string>
+  <string name="transaction_value_hint">22,50</string>
+  <string name="send">Enviar</string>
 </resources>

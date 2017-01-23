@@ -1,7 +1,6 @@
 package com.fgsguedes.testeneon.ui.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +38,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
   public void onBindViewHolder(ContactsViewHolder holder, int position) {
     Contact contact = contacts.get(position);
 
-    holder.thumbnail.setImageURI(Uri.parse(contact.photoPath));
+//    holder.thumbnail.setImageURI(Uri.parse(contact.photoPath));
     holder.contactName.setText(contact.name);
     holder.contactPhoneNumber.setText(contact.phoneNumber);
   }
