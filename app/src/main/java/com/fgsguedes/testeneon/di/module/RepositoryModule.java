@@ -5,9 +5,7 @@ import android.content.SharedPreferences;
 import com.fgsguedes.testeneon.data.api.NeonApi;
 import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
-import com.fgsguedes.testeneon.data.repository.ContactsRepositoryImpl;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
-import com.fgsguedes.testeneon.data.repository.TokenRepositoryImpl;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 
 import javax.inject.Singleton;
@@ -25,13 +23,13 @@ public class RepositoryModule {
       SchedulerComposer composer,
       SharedPreferences preferences
   ) {
-    return new TokenRepositoryImpl(neonApi, composer, preferences);
+    return new TokenRepository(neonApi, composer, preferences);
   }
 
   @Provides
   @Singleton
   public ContactsRepository providesContactRepository() {
-    return new ContactsRepositoryImpl();
+    return new ContactsRepository();
   }
 
   @Provides
