@@ -19,7 +19,10 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".ui.activity.SendMoneyActivity"/>
+    <activity
+        android:name=".ui.activity.SendMoneyActivity"
+        android:label="@string/send_money"
+        android:parentActivityName=".ui.activity.MainActivity"/>
 
   </application>
 
