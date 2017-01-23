@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingRight="@dimen/activity_horizontal_margin">
 
   <ImageView
@@ -13,23 +14,26 @@
       android:layout_width="48dp"
       android:layout_height="48dp"
       android:layout_marginEnd="8dp"
-      android:layout_marginRight="8dp"/>
+      android:layout_marginRight="8dp"
+      app:srcCompat="@drawable/ic_person_outline_black_96dp"/>
 
-  <TextView
-      android:id="@+id/text_contact_name"
+  <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_toEndOf="@id/image_contact_thumbnail"
-      android:layout_toRightOf="@id/image_contact_thumbnail"
-      tools:text="Filipe Guedes"/>
+      android:orientation="vertical">
 
-  <TextView
-      android:id="@+id/text_contact_phone_number"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/text_contact_name"
-      android:layout_toEndOf="@id/image_contact_thumbnail"
-      android:layout_toRightOf="@id/image_contact_thumbnail"
-      tools:text="(11) 974-605-298"/>
+    <TextView
+        android:id="@+id/text_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Filipe Guedes"/>
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/text_contact_phone_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="(11) 974-605-298"/>
+
+  </LinearLayout>
+
+</LinearLayout>
