@@ -71,11 +71,18 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
   @Override
   public void onReceivedTransactionValue(Contact contact, double value) {
-    transactionsRepository.sendMoney(contact, value)
-        .subscribe(
-            this::onTransactionSent,
-            this::onTransactionSendError
-        );
+
+    if (value <= 0) {
+      view.showInvalidValueWarning();
+      view.showAmountPrompt(contact);
+
+    } else {
+      transactionsRepository.sendMoney(contact, value)
+          .subscribe(
+              this::onTransactionSent,
+              this::onTransactionSendError
+          );
+    }
   }
 
   private void onTransactionSent() {

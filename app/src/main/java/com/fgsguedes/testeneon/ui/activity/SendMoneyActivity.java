@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.fgsguedes.testeneon.App;
 import com.fgsguedes.testeneon.R;
@@ -61,6 +62,11 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
   @Override
   public void showAmountPrompt(@NonNull Contact contact) {
     SendMoneyDialog.show(getSupportFragmentManager(), contact);
+  }
+
+  @Override
+  public void showInvalidValueWarning() {
+    Toast.makeText(this, R.string.invalid_transaction_value, Toast.LENGTH_LONG).show();
   }
 
   @Override
