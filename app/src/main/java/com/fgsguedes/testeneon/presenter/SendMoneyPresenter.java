@@ -90,7 +90,8 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   }
 
   private void onTransactionSendError(Throwable error) {
-    Log.e(TAG, "Send transaction error", error);
+    Log.e(TAG, "Unable to send transaction", error);
+    view.notifyTransactionError();
   }
 
   @NonNull

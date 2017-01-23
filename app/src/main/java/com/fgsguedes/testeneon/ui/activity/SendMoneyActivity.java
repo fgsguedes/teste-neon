@@ -78,6 +78,13 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
   }
 
   @Override
+  public void notifyTransactionError() {
+    Snackbar.make(contactsRecycler, R.string.transaction_error, Snackbar.LENGTH_LONG)
+        .setAction(android.R.string.ok, v -> {})
+        .show();
+  }
+
+  @Override
   public void onReceivedTransactionValue(Contact contact, double value) {
     presenter.onReceivedTransactionValue(contact, value);
   }
