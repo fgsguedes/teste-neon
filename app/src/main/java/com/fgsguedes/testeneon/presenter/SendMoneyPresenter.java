@@ -74,9 +74,9 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
     if (value <= 0) {
       view.showInvalidValueWarning();
-      view.showAmountPrompt(contact);
 
     } else {
+      view.hideDialogs();
       transactionsRepository.sendMoney(contact, value)
           .subscribe(
               this::onTransactionSent,
@@ -86,6 +86,7 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   }
 
   private void onTransactionSent() {
+    view.hideDialogs();
     view.notifyTransactionSent();
   }
 

@@ -7,9 +7,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -24,8 +21,7 @@ public class SendMoneyDialog extends DialogFragment {
 
   private static final String CONTACT_BUNDLE_KEY = "contact";
 
-  public static void show(
-      @NonNull FragmentManager fragmentManager,
+  public static SendMoneyDialog newInstance(
       @NonNull Contact contact
   ) {
 
@@ -35,7 +31,7 @@ public class SendMoneyDialog extends DialogFragment {
     SendMoneyDialog sendMoneyDialog = new SendMoneyDialog();
     sendMoneyDialog.setArguments(bundle);
 
-    sendMoneyDialog.show(fragmentManager, TAG);
+    return sendMoneyDialog;
   }
 
   @NonNull
@@ -46,11 +42,11 @@ public class SendMoneyDialog extends DialogFragment {
     View view = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_send_money, null, false);
 
     EditText editText = (EditText) view.findViewById(R.id.edit_text_transaction_value);
-    editText.addTextChangedListener(new TextWatcherValidator());
 
     if (contact != null) {
       ((TextView) view.findViewById(R.id.text_contact_name)).setText(contact.name);
       ((TextView) view.findViewById(R.id.text_contact_phone_number)).setText(contact.phoneNumber);
+      view.findViewById(R.id.button_send_money).setOnClickListener(v -> onSendClicked(editText, contact));
 
     } else {
       dismissAllowingStateLoss();
@@ -58,7 +54,6 @@ public class SendMoneyDialog extends DialogFragment {
 
     return new AlertDialog.Builder(getActivity())
         .setView(view)
-        .setPositiveButton(R.string.send, (dialogInterface, which) -> onSendClicked(editText, contact))
         .create();
   }
 
@@ -74,7 +69,11 @@ public class SendMoneyDialog extends DialogFragment {
   private void onSendClicked(EditText editText, Contact contact) {
 
     String inputValue = editText.getText().toString();
-    double value = Double.parseDouble(inputValue);
+
+    double value = 0;
+    if (inputValue.length() > 0) {
+      value = Double.parseDouble(inputValue);
+    }
 
     ((SendMoneyCallback) getActivity()).onReceivedTransactionValue(contact, value);
   }
@@ -90,32 +89,5 @@ public class SendMoneyDialog extends DialogFragment {
 
   public interface SendMoneyCallback {
     void onReceivedTransactionValue(Contact contact, double value);
-  }
-
-  private class TextWatcherValidator implements TextWatcher {
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable editable) {
-      ((AlertDialog) getDialog())
-          .getButton(DialogInterface.BUTTON_POSITIVE)
-          .setEnabled(isValid(editable.toString()));
-    }
-
-    private boolean isValid(String input) {
-      if (input.length() == 0) return false;
-
-      double value = Double.parseDouble(input);
-      return value > 0;
-    }
   }
 }

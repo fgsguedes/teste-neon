@@ -19,5 +19,6 @@ public interface SendMoneyContract {
     void showInvalidValueWarning();
     void notifyTransactionSent();
     void notifyTransactionError();
+    void hideDialogs();
   }
 }

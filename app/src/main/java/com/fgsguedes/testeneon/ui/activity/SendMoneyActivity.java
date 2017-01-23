@@ -30,6 +30,8 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
   private LinearLayoutManager linearLayoutManager;
   private ContactsAdapter contactsAdapter;
 
+  private SendMoneyDialog sendMoneyDialog;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -64,7 +66,8 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
 
   @Override
   public void showAmountPrompt(@NonNull Contact contact) {
-    SendMoneyDialog.show(getSupportFragmentManager(), contact);
+    sendMoneyDialog = SendMoneyDialog.newInstance(contact);
+    sendMoneyDialog.show(getSupportFragmentManager(), SendMoneyDialog.class.getSimpleName());
   }
 
   @Override
@@ -84,6 +87,11 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
     Snackbar.make(contactsRecycler, R.string.transaction_error, Snackbar.LENGTH_LONG)
         .setAction(android.R.string.ok, v -> {})
         .show();
+  }
+
+  @Override
+  public void hideDialogs() {
+    sendMoneyDialog.dismissAllowingStateLoss();
   }
 
   @Override
