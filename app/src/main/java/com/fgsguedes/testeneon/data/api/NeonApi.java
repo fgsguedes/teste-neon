@@ -9,6 +9,7 @@ import java.util.List;
 import io.reactivex.Completable;
 import io.reactivex.Single;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -21,6 +22,7 @@ public interface NeonApi {
       @Query("email") @NonNull String email
   );
 
+  @FormUrlEncoded
   @POST("SendMoney")
   Completable sendMoney(
       @Field("token") @NonNull String token,

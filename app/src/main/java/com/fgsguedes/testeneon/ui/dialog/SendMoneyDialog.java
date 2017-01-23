@@ -2,11 +2,11 @@ package com.fgsguedes.testeneon.ui.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -53,7 +53,28 @@ public class SendMoneyDialog extends DialogFragment {
 
     return new AlertDialog.Builder(getActivity())
         .setView(view)
-        .setPositiveButton(R.string.send, (dialog, which) -> Log.e("lala", editText.getText().toString()))
+        .setPositiveButton(R.string.send, (dialogInterface, which) -> onSendClicked(editText, contact))
         .create();
+  }
+
+  private void onSendClicked(EditText editText, Contact contact) {
+
+    String inputValue = editText.getText().toString();
+    double value = Double.parseDouble(inputValue);
+
+    ((SendMoneyCallback) getActivity()).onReceivedTransactionValue(contact, value);
+  }
+
+  @Override
+  public void onAttach(Context context) {
+    super.onAttach(context);
+
+    if (!(context instanceof SendMoneyCallback)) {
+      throw new IllegalStateException("Activity must implement SendMoneyCallback");
+    }
+  }
+
+  public interface SendMoneyCallback {
+    void onReceivedTransactionValue(Contact contact, double value);
   }
 }

@@ -69,6 +69,23 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
     view.showAmountPrompt(contact);
   }
 
+  @Override
+  public void onReceivedTransactionValue(Contact contact, double value) {
+    transactionsRepository.sendMoney(contact, value)
+        .subscribe(
+            this::onTransactionSent,
+            this::onTransactionSendError
+        );
+  }
+
+  private void onTransactionSent() {
+    Log.e(TAG, "Transaction successful");
+  }
+
+  private void onTransactionSendError(Throwable error) {
+    Log.e(TAG, "Send transaction error", error);
+  }
+
   @NonNull
   private Contact find(long contactId) {
     for (Contact c : contacts) {

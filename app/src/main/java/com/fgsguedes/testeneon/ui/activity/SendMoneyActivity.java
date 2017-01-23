@@ -17,7 +17,7 @@ import com.fgsguedes.testeneon.ui.dialog.SendMoneyDialog;
 
 import javax.inject.Inject;
 
-public class SendMoneyActivity extends AppCompatActivity implements SendMoneyContract.View {
+public class SendMoneyActivity extends AppCompatActivity implements SendMoneyContract.View, SendMoneyDialog.SendMoneyCallback {
 
   @Inject
   SendMoneyContract.Presenter presenter;
@@ -61,6 +61,11 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
   @Override
   public void showAmountPrompt(@NonNull Contact contact) {
     SendMoneyDialog.show(getSupportFragmentManager(), contact);
+  }
+
+  @Override
+  public void onReceivedTransactionValue(Contact contact, double value) {
+    presenter.onReceivedTransactionValue(contact, value);
   }
 
   private void setUpUi() {

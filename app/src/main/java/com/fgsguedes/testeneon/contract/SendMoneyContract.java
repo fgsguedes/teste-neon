@@ -10,6 +10,7 @@ public interface SendMoneyContract {
   interface Presenter extends BasePresenter<View> {
 
     void contactClicked(long contactId);
+    void onReceivedTransactionValue(Contact contact, double value);
   }
 
   interface View {
