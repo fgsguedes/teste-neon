@@ -86,7 +86,7 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   }
 
   private void onTransactionSent() {
-    Log.e(TAG, "Transaction successful");
+    view.notifyTransactionSent();
   }
 
   private void onTransactionSendError(Throwable error) {

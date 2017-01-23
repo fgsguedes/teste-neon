@@ -24,7 +24,7 @@ ext {
   espressoVersion = "2.2.2"
 
   appDependencies = [
-      supportAppCompatV7      : "com.android.support:appcompat-v7:$supportLibraryVersion",
+      supportDesignLibrary    : "com.android.support:design:$supportLibraryVersion",
       recyclerView            : "com.android.support:recyclerview-v7:$supportLibraryVersion",
       dagger                  : "com.google.dagger:dagger:$daggerVersion",
       daggerCompiler          : "com.google.dagger:dagger-compiler:$daggerVersion",

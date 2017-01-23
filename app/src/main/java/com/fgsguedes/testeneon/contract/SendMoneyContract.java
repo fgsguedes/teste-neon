@@ -17,5 +17,6 @@ public interface SendMoneyContract {
     void showContact(@NonNull Contact contact);
     void showAmountPrompt(@NonNull Contact contact);
     void showInvalidValueWarning();
+    void notifyTransactionSent();
   }
 }
