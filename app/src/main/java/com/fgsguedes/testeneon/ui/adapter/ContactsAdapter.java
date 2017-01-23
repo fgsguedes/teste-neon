@@ -18,7 +18,7 @@ import java.util.List;
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
 
   private final Context context;
-  private final List<Contact> contacts = new ArrayList<>();
+  private List<Contact> contacts = new ArrayList<>();
 
   private View.OnClickListener clickListener;
 
@@ -57,10 +57,9 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsViewHolder> {
     this.clickListener = clickListener;
   }
 
-  public void addItem(@NonNull Contact contact) {
-    int addedPosition = contacts.size();
-    contacts.add(contact);
-    notifyItemInserted(addedPosition);
+  public void setItems(@NonNull List<Contact> contacts) {
+    this.contacts = contacts;
+    notifyDataSetChanged();
   }
 }
 

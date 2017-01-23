@@ -7,30 +7,26 @@ import android.util.Log;
 
 import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
-import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 import com.fgsguedes.testeneon.model.Contact;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class SendMoneyPresenter implements SendMoneyContract.Presenter {
 
   private final String TAG = getClass().getSimpleName();
 
-  private final TokenRepository tokenRepository;
   private final ContactsRepository contactsRepository;
   private final TransactionsRepository transactionsRepository;
 
   private SendMoneyContract.View view;
 
-  private final ArrayList<Contact> contacts = new ArrayList<>();
+  private List<Contact> contacts;
 
   public SendMoneyPresenter(
-      TokenRepository tokenRepository,
       ContactsRepository contactsRepository,
       TransactionsRepository transactionsRepository
   ) {
-    this.tokenRepository = tokenRepository;
     this.contactsRepository = contactsRepository;
     this.transactionsRepository = transactionsRepository;
   }
@@ -44,14 +40,14 @@ public class SendMoneyPresenter implements SendMoneyContract.Presenter {
   public void onCreate(@Nullable Bundle savedInstanceState) {
     contactsRepository.list()
         .subscribe(
-            this::onReceivedContact,
+            this::onReceivedContacts,
             this::onListContactError
         );
   }
 
-  private void onReceivedContact(@NonNull Contact contact) {
-    contacts.add(contact);
-    view.showContact(contact);
+  private void onReceivedContacts(@NonNull List<Contact> contacts) {
+    this.contacts = contacts;
+    view.showContacts(contacts);
   }
 
   private void onListContactError(@NonNull Throwable error) {

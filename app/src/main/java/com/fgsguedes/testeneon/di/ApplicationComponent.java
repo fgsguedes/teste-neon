@@ -6,6 +6,7 @@ import com.fgsguedes.testeneon.di.module.PresenterModule;
 import com.fgsguedes.testeneon.di.module.RepositoryModule;
 import com.fgsguedes.testeneon.ui.activity.MainActivity;
 import com.fgsguedes.testeneon.ui.activity.SendMoneyActivity;
+import com.fgsguedes.testeneon.ui.activity.TransactionHistoryActivity;
 
 import javax.inject.Singleton;
 
@@ -23,4 +24,5 @@ import dagger.Component;
 public interface ApplicationComponent {
   void inject(MainActivity mainActivity);
   void inject(SendMoneyActivity sendMoneyActivity);
+  void inject(TransactionHistoryActivity transactionHistoryActivity);
 }

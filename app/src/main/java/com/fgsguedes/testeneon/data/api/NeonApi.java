@@ -2,7 +2,7 @@ package com.fgsguedes.testeneon.data.api;
 
 import android.support.annotation.NonNull;
 
-import com.fgsguedes.testeneon.model.Transfer;
+import com.fgsguedes.testeneon.model.Transaction;
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public interface NeonApi {
   );
 
   @GET("GetTransfers")
-  Single<List<Transfer>> getTransfers(
+  Single<List<Transaction>> getTransfers(
       @Query("token") @NonNull String token
   );
 }

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.fgsguedes.testeneon.base.BasePresenter;
 import com.fgsguedes.testeneon.model.Contact;
 
+import java.util.List;
+
 public interface SendMoneyContract {
 
   interface Presenter extends BasePresenter<View> {
@@ -14,7 +16,7 @@ public interface SendMoneyContract {
   }
 
   interface View {
-    void showContact(@NonNull Contact contact);
+    void showContacts(@NonNull List<Contact> contacts);
     void showAmountPrompt(@NonNull Contact contact);
     void showInvalidValueWarning();
     void notifyTransactionSent();

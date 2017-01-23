@@ -3,8 +3,12 @@ package com.fgsguedes.testeneon.data.repository;
 import com.fgsguedes.testeneon.data.api.NeonApi;
 import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.fgsguedes.testeneon.model.Contact;
+import com.fgsguedes.testeneon.model.Transaction;
+
+import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Single;
 
 public class TransactionsRepository {
 
@@ -24,5 +28,11 @@ public class TransactionsRepository {
             neonApi.sendMoney(token, contact.id, amount)
                 .compose(composer.completableTransformer())
         );
+  }
+
+  public Single<List<Transaction>> list() {
+    return tokenRepository.getToken()
+        .flatMap(neonApi::getTransfers)
+        .compose(composer.singleTransformer());
   }
 }

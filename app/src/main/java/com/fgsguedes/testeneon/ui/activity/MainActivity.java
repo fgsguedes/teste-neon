@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
   @Override
   public void navigateToTransactions() {
-
+    Intent intent = new Intent(this, TransactionHistoryActivity.class);
+    startActivity(intent);
   }
 
   private void setUpUi() {

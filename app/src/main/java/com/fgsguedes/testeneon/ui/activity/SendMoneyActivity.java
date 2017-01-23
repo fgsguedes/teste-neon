@@ -19,6 +19,8 @@ import com.fgsguedes.testeneon.model.Contact;
 import com.fgsguedes.testeneon.ui.adapter.ContactsAdapter;
 import com.fgsguedes.testeneon.ui.dialog.SendMoneyDialog;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class SendMoneyActivity extends AppCompatActivity implements SendMoneyContract.View, SendMoneyDialog.SendMoneyCallback {
@@ -60,8 +62,8 @@ public class SendMoneyActivity extends AppCompatActivity implements SendMoneyCon
   }
 
   @Override
-  public void showContact(@NonNull Contact contact) {
-    contactsAdapter.addItem(contact);
+  public void showContacts(@NonNull List<Contact> contacts) {
+    contactsAdapter.setItems(contacts);
   }
 
   @Override
