@@ -3,7 +3,7 @@ package com.fgsguedes.testeneon.contract;
 import android.support.annotation.NonNull;
 
 import com.fgsguedes.testeneon.base.BasePresenter;
-import com.fgsguedes.testeneon.model.X;
+import com.fgsguedes.testeneon.model.datatransfer.ContactTransactionTotal;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public interface TransactionHistoryContract {
   }
 
   interface View {
-    void showTransactions(@NonNull List<X> xes);
+    void showTransactions(@NonNull List<ContactTransactionTotal> contactTransactionTotals);
   }
 }

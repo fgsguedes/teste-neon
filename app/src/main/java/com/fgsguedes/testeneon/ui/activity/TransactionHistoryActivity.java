@@ -12,7 +12,7 @@ import android.support.v7.widget.Toolbar;
 import com.fgsguedes.testeneon.App;
 import com.fgsguedes.testeneon.R;
 import com.fgsguedes.testeneon.contract.TransactionHistoryContract;
-import com.fgsguedes.testeneon.model.X;
+import com.fgsguedes.testeneon.model.datatransfer.ContactTransactionTotal;
 import com.fgsguedes.testeneon.ui.adapter.TransactionsAdapter;
 
 import java.util.List;
@@ -56,8 +56,8 @@ public class TransactionHistoryActivity extends AppCompatActivity implements Tra
   }
 
   @Override
-  public void showTransactions(@NonNull List<X> xes) {
-    transactionsAdapter.setItems(xes);
+  public void showTransactions(@NonNull List<ContactTransactionTotal> contactTransactionTotals) {
+    transactionsAdapter.setItems(contactTransactionTotals);
   }
 
   private void setUpUi() {

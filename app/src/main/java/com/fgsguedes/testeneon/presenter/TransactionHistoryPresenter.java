@@ -10,7 +10,7 @@ import com.fgsguedes.testeneon.contract.TransactionHistoryContract;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 import com.fgsguedes.testeneon.model.Transaction;
-import com.fgsguedes.testeneon.model.X;
+import com.fgsguedes.testeneon.model.datatransfer.ContactTransactionTotal;
 
 import java.util.List;
 
@@ -49,12 +49,12 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
         .subscribeOn(Schedulers.computation())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(
-            this::onReceiveXes,
+            this::onReceiveTransactionTotal,
             this::onError
         );
   }
 
-  private Observable<X> mapTransactions(List<Transaction> transactions) {
+  private Observable<ContactTransactionTotal> mapTransactions(List<Transaction> transactions) {
     return Observable.create(emitter -> {
 
       LongSparseArray<Double> valuesPerContact = new LongSparseArray<>();
@@ -72,7 +72,7 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
             .subscribe(
                 contact -> {
                   if (contact != null) {
-                    emitter.onNext(new X(contact, value));
+                    emitter.onNext(new ContactTransactionTotal(contact, value));
                   }
                 },
                 error -> emitter.onError(new IllegalStateException("Could not find Contact for given transaction"))
@@ -83,8 +83,8 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
     });
   }
 
-  private void onReceiveXes(List<X> xes) {
-    view.showTransactions(xes);
+  private void onReceiveTransactionTotal(List<ContactTransactionTotal> contactTransactionTotals) {
+    view.showTransactions(contactTransactionTotals);
   }
 
   private void onError(Throwable error) {

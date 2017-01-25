@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fgsguedes.testeneon.R;
-import com.fgsguedes.testeneon.model.X;
+import com.fgsguedes.testeneon.model.datatransfer.ContactTransactionTotal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsViewHo
 
   private final Context context;
   private final Locale locale;
-  private List<X> transactions = new ArrayList<>();
+  private List<ContactTransactionTotal> transactions = new ArrayList<>();
 
   public TransactionsAdapter(Context context) {
     this.context = context;
@@ -36,7 +36,7 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsViewHo
 
   @Override
   public void onBindViewHolder(TransactionsViewHolder holder, int position) {
-    X transaction = transactions.get(position);
+    ContactTransactionTotal transaction = transactions.get(position);
 
     holder.contactName.setText(transaction.contact.name);
     holder.contactPhoneNumber.setText(transaction.contact.phoneNumber);
@@ -53,8 +53,8 @@ public class TransactionsAdapter extends RecyclerView.Adapter<TransactionsViewHo
     return transactions.get(position).contact.id;
   }
 
-  public void setItems(@NonNull List<X> xes) {
-    this.transactions = xes;
+  public void setItems(@NonNull List<ContactTransactionTotal> contactTransactionTotals) {
+    this.transactions = contactTransactionTotals;
     notifyDataSetChanged();
   }
 }
