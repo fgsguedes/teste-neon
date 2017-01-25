@@ -69,11 +69,14 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
         double value = valuesPerContact.valueAt(i);
 
         contactsRepository.find(contactId)
-            .subscribe(contact -> {
-              if (contact != null) {
-                emitter.onNext(new X(contact, value));
-              }
-            });
+            .subscribe(
+                contact -> {
+                  if (contact != null) {
+                    emitter.onNext(new X(contact, value));
+                  }
+                },
+                error -> emitter.onError(new IllegalStateException("Could not find Contact for given transaction"))
+            );
       }
 
       emitter.onComplete();
