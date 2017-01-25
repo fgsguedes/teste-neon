@@ -3,6 +3,7 @@ package com.fgsguedes.testeneon.di.module;
 import com.fgsguedes.testeneon.contract.MainActivityContract;
 import com.fgsguedes.testeneon.contract.SendMoneyContract;
 import com.fgsguedes.testeneon.contract.TransactionHistoryContract;
+import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
@@ -39,8 +40,9 @@ public class PresenterModule {
   @Singleton
   public TransactionHistoryContract.Presenter provideTransactionHistoryPresenter(
       ContactsRepository contactsRepository,
-      TransactionsRepository transactionsRepository
+      TransactionsRepository transactionsRepository,
+      SchedulerComposer composer
   ) {
-    return new TransactionHistoryPresenter(contactsRepository, transactionsRepository);
+    return new TransactionHistoryPresenter(contactsRepository, transactionsRepository, composer);
   }
 }

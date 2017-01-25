@@ -7,6 +7,7 @@ import android.util.Log;
 import android.util.LongSparseArray;
 
 import com.fgsguedes.testeneon.contract.TransactionHistoryContract;
+import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.fgsguedes.testeneon.data.repository.ContactsRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 import com.fgsguedes.testeneon.model.Transaction;
@@ -15,8 +16,6 @@ import com.fgsguedes.testeneon.model.datatransfer.ContactTransactionTotal;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class TransactionHistoryPresenter implements TransactionHistoryContract.Presenter {
 
@@ -26,13 +25,15 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
 
   private final ContactsRepository contactsRepository;
   private final TransactionsRepository transactionsRepository;
+  private final SchedulerComposer composer;
 
   public TransactionHistoryPresenter(
       ContactsRepository contactsRepository,
-      TransactionsRepository transactionsRepository
-  ) {
+      TransactionsRepository transactionsRepository,
+      SchedulerComposer composer) {
     this.contactsRepository = contactsRepository;
     this.transactionsRepository = transactionsRepository;
+    this.composer = composer;
   }
 
   @Override
@@ -46,8 +47,7 @@ public class TransactionHistoryPresenter implements TransactionHistoryContract.P
         .flatMapObservable(this::mapTransactions)
         .sorted()
         .toList()
-        .subscribeOn(Schedulers.computation())
-        .observeOn(AndroidSchedulers.mainThread())
+        .compose(composer.singleComputation())
         .subscribe(
             this::onReceiveTransactionTotal,
             this::onError

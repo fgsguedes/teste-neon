@@ -18,10 +18,12 @@ ext {
   okHttpVersion = "3.5.0"
   retrofitVersion = "2.1.0"
   rxJava2RetrofitAdapter = "1.0.0"
+  mockwebserverVersion = "3.5.0"
 
   // Testing
   junitVersion = "4.12"
   espressoVersion = "2.2.2"
+  mockitoVersion = "2.6.8"
 
   appDependencies = [
       supportDesignLibrary    : "com.android.support:design:$supportLibraryVersion",
@@ -38,7 +40,9 @@ ext {
   ]
 
   testDependencies = [
-      junit   : "junit:junit:$junitVersion",
-      espresso: "com.android.support.test.espresso:espresso-core:$espressoVersion"
+      junit        : "junit:junit:$junitVersion",
+      espresso     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
+      mockito      : "org.mockito:mockito-core:$mockitoVersion",
+      mockwebserver: "com.squareup.okhttp3:mockwebserver:$mockwebserverVersion"
   ]
 }

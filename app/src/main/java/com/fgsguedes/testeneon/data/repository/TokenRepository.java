@@ -32,7 +32,7 @@ public class TokenRepository {
     }
 
     return neonApi.generateToken("Filipe Guedes", "fgs.guedes@gmail.com")
-        .compose(composer.singleTransformer())
+        .compose(composer.singleIo())
         .doOnSuccess(this::persistToken);
   }
 

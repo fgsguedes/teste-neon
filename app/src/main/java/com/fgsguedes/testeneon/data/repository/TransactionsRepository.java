@@ -26,13 +26,13 @@ public class TransactionsRepository {
     return tokenRepository.getToken()
         .flatMapCompletable(token ->
             neonApi.sendMoney(token, contact.id, amount)
-                .compose(composer.completableTransformer())
+                .compose(composer.completableIo())
         );
   }
 
   public Single<List<Transaction>> list() {
     return tokenRepository.getToken()
         .flatMap(neonApi::getTransfers)
-        .compose(composer.singleTransformer());
+        .compose(composer.singleIo());
   }
 }

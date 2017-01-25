@@ -2,6 +2,7 @@ package com.fgsguedes.testeneon;
 
 import android.app.Application;
 import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 
 import com.fgsguedes.testeneon.di.ApplicationComponent;
 import com.fgsguedes.testeneon.di.DaggerApplicationComponent;
@@ -21,5 +22,10 @@ public class App extends Application {
   @NonNull
   public ApplicationComponent getApplicationComponent() {
     return applicationComponent;
+  }
+
+  @VisibleForTesting
+  public void setApplicationComponent(ApplicationComponent component) {
+    this.applicationComponent = component;
   }
 }

@@ -4,6 +4,7 @@ import com.fgsguedes.testeneon.data.api.NeonApi;
 import com.fgsguedes.testeneon.data.api.SchedulerComposer;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -16,7 +17,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class NetworkingModule {
 
-  private OkHttpClient createHttpClient() {
+  @Provides
+  @Singleton
+  public OkHttpClient providesOkHttpClient() {
     return new OkHttpClient.Builder()
         .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build();
@@ -24,10 +27,17 @@ public class NetworkingModule {
 
   @Provides
   @Singleton
-  public Retrofit providesRetrofit() {
+  @Named("baseUrl")
+  public String provideBaseUrl() {
+    return "http://processoseletivoneon.azurewebsites.net/";
+  }
+
+  @Provides
+  @Singleton
+  public Retrofit providesRetrofit(OkHttpClient client, @Named("baseUrl") String baseUrl) {
     return new Retrofit.Builder()
-        .client(createHttpClient())
-        .baseUrl("http://processoseletivoneon.azurewebsites.net/")
+        .client(client)
+        .baseUrl(baseUrl)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build();

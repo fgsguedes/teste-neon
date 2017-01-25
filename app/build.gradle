@@ -29,6 +29,10 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
+  testOptions {
+    unitTests.returnDefaultValues = true
+  }
 }
 
 dependencies {
@@ -56,5 +60,9 @@ dependencies {
     exclude group: 'com.android.support', module: 'support-annotations'
   })
 
+  androidTestCompile testDependencies.mockito
+  androidTestCompile testDependencies.mockwebserver
+
   testCompile testDependencies.junit
+  testCompile testDependencies.mockito
 }
