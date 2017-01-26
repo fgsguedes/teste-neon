@@ -1,5 +1,8 @@
 package com.fgsguedes.testeneon.di;
 
+import android.support.annotation.VisibleForTesting;
+
+import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 import com.fgsguedes.testeneon.di.module.AndroidModule;
 import com.fgsguedes.testeneon.di.module.NetworkingModule;
 import com.fgsguedes.testeneon.di.module.PresenterModule;
@@ -25,4 +28,7 @@ public interface ApplicationComponent {
   void inject(MainActivity mainActivity);
   void inject(SendMoneyActivity sendMoneyActivity);
   void inject(TransactionHistoryActivity transactionHistoryActivity);
+
+  @VisibleForTesting
+  TransactionsRepository getTransactionsRepository();
 }

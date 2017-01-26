@@ -42,7 +42,7 @@ ext {
   testDependencies = [
       junit        : "junit:junit:$junitVersion",
       espresso     : "com.android.support.test.espresso:espresso-core:$espressoVersion",
-      mockito      : "org.mockito:mockito-core:$mockitoVersion",
+      mockito      : "org.mockito:mockito-android:$mockitoVersion",
       mockwebserver: "com.squareup.okhttp3:mockwebserver:$mockwebserverVersion"
   ]
 }

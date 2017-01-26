@@ -9,6 +9,7 @@ import com.fgsguedes.testeneon.di.ApplicationComponent;
 import com.fgsguedes.testeneon.di.DaggerApplicationComponent;
 import com.fgsguedes.testeneon.di.module.AndroidModule;
 import com.fgsguedes.testeneon.di.module.MockedNetworkingModule;
+import com.fgsguedes.testeneon.di.module.MockedRepositoryModule;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,7 @@ class BaseActivityTest {
     ApplicationComponent applicationComponent = DaggerApplicationComponent.builder()
         .androidModule(new AndroidModule(InstrumentationRegistry.getTargetContext()))
         .networkingModule(new MockedNetworkingModule(server))
+        .repositoryModule(new MockedRepositoryModule())
         .build();
 
     ((App) InstrumentationRegistry.getTargetContext().getApplicationContext())
