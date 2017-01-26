@@ -1,5 +1,8 @@
 package com.fgsguedes.testeneon.ui.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.test.InstrumentationRegistry;
 
@@ -45,5 +48,22 @@ class BaseActivityTest {
     BufferedSource buffer = Okio.buffer(source);
 
     return buffer.readUtf8();
+  }
+
+  SharedPreferences getSharedPreferences() {
+    Context context = InstrumentationRegistry.getTargetContext();
+    return PreferenceManager.getDefaultSharedPreferences(context);
+  }
+
+  void clearSharedPreferences() {
+    getSharedPreferences()
+        .edit()
+        .clear()
+        .apply();
+  }
+
+  ApplicationComponent getApplicationComponent() {
+    return ((App) InstrumentationRegistry.getTargetContext().getApplicationContext())
+        .getApplicationComponent();
   }
 }

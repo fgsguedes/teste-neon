@@ -2,6 +2,7 @@ package com.fgsguedes.testeneon.di;
 
 import android.support.annotation.VisibleForTesting;
 
+import com.fgsguedes.testeneon.data.repository.TokenRepository;
 import com.fgsguedes.testeneon.data.repository.TransactionsRepository;
 import com.fgsguedes.testeneon.di.module.AndroidModule;
 import com.fgsguedes.testeneon.di.module.NetworkingModule;
@@ -31,4 +32,7 @@ public interface ApplicationComponent {
 
   @VisibleForTesting
   TransactionsRepository getTransactionsRepository();
+
+  @VisibleForTesting
+  TokenRepository getTokenRepository();
 }
