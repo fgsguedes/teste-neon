@@ -15,6 +15,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"
+      android:layout_centerInParent="true"
+      android:paddingTop="16dp"
       android:text="@string/developer_name"/>
 
   <TextView
@@ -24,6 +26,13 @@
       android:layout_below="@id/text_view_developer_name"
       android:layout_centerHorizontal="true"
       android:text="@string/developer_email"/>
+
+  <ImageView
+      android:layout_width="150dp"
+      android:layout_height="150dp"
+      android:layout_above="@id/text_view_developer_name"
+      android:layout_centerHorizontal="true"
+      android:src="@drawable/developer_picture"/>
 
   <Button
       android:id="@+id/button_transaction_history"
