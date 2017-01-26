@@ -18,7 +18,7 @@ public class RepositoryModule {
 
   @Provides
   @Singleton
-  public TokenRepository providesMainActivityRepository(
+  public TokenRepository providesTokenRepository(
       NeonApi neonApi,
       SchedulerComposer composer,
       SharedPreferences preferences
