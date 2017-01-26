@@ -6,7 +6,7 @@
   <string name="developer_email">fgs.guedes@gmail.com</string>
   <string name="transaction_value_hint">22,50</string>
   <string name="send">Enviar</string>
-  <string name="invalid_transaction_value">Valor incerido é inválido</string>
+  <string name="invalid_transaction_value">Valor inserido é inválido</string>
   <string name="transaction_sent">Transação enviada com sucesso</string>
   <string name="transaction_error">Não foi possível enviar a transação</string>
 </resources>
